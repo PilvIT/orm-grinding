@@ -1,17 +1,17 @@
 export const Footer = () => {
   return (
-    <footer className="mt-10 block text-center space-y-5">
+    <footer className="my-10 block text-center space-y-5">
       <p>
-        This product is offered by{" "}
+        This site is a part of{" "}
         <a
           href="https://pilvit.fi/"
           target="_blank"
           rel="noreferrer"
-          className="text-red-500"
+          className="text-red-500 hover:text-red-400 hover:underline underline-offset-2"
         >
           PilvIT Oy
         </a>{" "}
-        as a part of Open Source adventures.
+        Open Source adventures.
       </p>
 
       <p className="opacity-70">Copyright &copy; 2022 PilvIT Oy</p>
