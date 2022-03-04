@@ -10,7 +10,7 @@ interface Props {
 export const Link = ({ children, href, appearance }: Props) => {
   const className =
     appearance === "button"
-      ? "block px-2 py-2 bg-red-200 max-w-fit rounded-md hover:brightness-110"
+      ? "block p-2 bg-red-200 max-w-fit rounded-md hover:brightness-110"
       : "";
 
   return (

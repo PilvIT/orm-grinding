@@ -1,30 +1,63 @@
+import { FormEvent, useEffect, useState } from "react";
+import { Button } from "../atoms/Button";
 import { Code } from "../atoms/Code";
 import { CodeField } from "../atoms/CodeField";
+import type { Exercise } from "../../core/types";
+import { ExerciseAlert } from "../atoms/ExerciseAlert";
+import { utils } from "../../core/utils";
 
-export const Playground = () => {
-  const code = `public class AppDbContext : DbContext {
-  public DbSet<Car> Cars { get; set; }
+interface Props {
+  exerciseSet: Array<() => Exercise>;
 }
 
-public class Car {
-  [Key]
-  public int Id { get; set; }
-}
+export const Playground = ({ exerciseSet }: Props) => {
+  const [exercise, setExercise] = useState<Exercise>({
+    check: () => false,
+    code: "",
+    question: "",
+  });
+  const [answer, setAnswer] = useState<string>("");
+  const [correct, setCorrect] = useState<boolean | undefined>(undefined);
 
-var db = new AppDbContext();
-`;
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (exercise.check(answer)) {
+      setCorrect(true);
+    } else {
+      setCorrect(false);
+    }
+  };
+
+  const handleNextExercise = () => {
+    setExercise(utils.pickOne(exerciseSet)());
+    setAnswer("");
+    setCorrect(undefined);
+  };
+
+  useEffect(() => {
+    setExercise(utils.pickOne(exerciseSet)());
+  }, [exerciseSet]);
 
   return (
     <div className="text-left rounded-md overflow-clip bg-orange-50 min-h-[50vh] grid md:grid-cols-2">
       <div className="p-5">
-        <h3 className="font-bold">Filtering</h3>
-        <p>How do you retrieve single entity Car by id?</p>
+        <form className="space-y-5" onSubmit={handleSubmit}>
+          <p>{exercise.question}</p>
+          <CodeField value={answer} setValue={setAnswer} />
 
-        <CodeField />
-
-        <button>Submit</button>
+          <div className="flex flex-row-reverse justify-between items-center">
+            {correct ? (
+              <Button onClick={handleNextExercise}>Next Exercise</Button>
+            ) : (
+              <Button type="submit" disabled={answer === ""}>
+                Submit
+              </Button>
+            )}
+            <ExerciseAlert correct={correct} />
+          </div>
+        </form>
       </div>
-      <Code code={code} lang="cs" />
+      <Code code={exercise.code} lang="cs" />
     </div>
   );
 };

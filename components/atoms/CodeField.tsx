@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { ChangeEvent } from "react";
 
-export const CodeField = () => {
-  const [code, setCode] = useState("");
+interface Props {
+  value: string;
+  setValue: (value: string) => void;
+}
+
+export const CodeField = ({ value, setValue }: Props) => {
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(event.target.value);
+  };
+
   return (
     <textarea
-      className="font-mono text-opacity-0 w-full"
-      value={code}
+      className="font-mono border rounded-md p-2 w-full"
+      value={value}
       spellCheck={false}
-      onKeyDown={(e) => e.code === "Tab" && e.preventDefault()}
-      onChange={(e) => setCode(e.target.value)}
+      onChange={handleChange}
+      rows={5}
     />
   );
 };

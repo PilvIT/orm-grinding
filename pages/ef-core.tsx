@@ -1,6 +1,8 @@
 import { Header } from "../components/atoms/Header";
 import { MainTemplate } from "../components/Templates/MainTemplate";
 import { Playground } from "../components/organisms/Playground";
+import { findById } from "../core/exercises/efcore/findById";
+import { simpleFilter } from "../core/exercises/efcore/simpleFilter";
 
 const EfCorePage = () => {
   return (
@@ -9,7 +11,7 @@ const EfCorePage = () => {
         Entity Framework Core
       </Header>
 
-      <Playground />
+      <Playground exerciseSet={[findById, simpleFilter]} />
     </MainTemplate>
   );
 };

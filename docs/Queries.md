@@ -10,4 +10,6 @@ How would you retrieve Car by id? Assuming that id is a primary key.
 db.Cars.Find(id)
 ```
 
-- 
+`/db.Cars.Find(id)/`
+
+## Filter by attributes
