@@ -1,5 +1,5 @@
-import { Exercise } from "../../types";
-import { chooseEntity } from "./EntityNames";
+import { Exercise } from "../../../types";
+import { chooseEntity } from "../EntityNames";
 
 export const findById = (): Exercise => {
   const entity = chooseEntity();

@@ -12,7 +12,7 @@ export const CodeField = ({ value, setValue }: Props) => {
 
   return (
     <textarea
-      className="font-mono border rounded-md p-2 w-full"
+      className="font-mono border rounded-md p-2 w-full focus:outline-fuchsia-300"
       value={value}
       spellCheck={false}
       onChange={handleChange}

@@ -20,7 +20,9 @@ export const MainTemplate = ({ children }: Props) => {
       </Head>
 
       <Menu />
-      <div className={`mt-10 md:w-8/12 m-auto text-center min-h-[50vh]`}>
+      <div
+        className={`mt-10 md:w-10/12 lg:w-8/12 m-auto text-center min-h-[50vh]`}
+      >
         {children}
       </div>
       <Footer />

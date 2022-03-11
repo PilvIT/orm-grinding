@@ -4,7 +4,7 @@ import { Code } from "../atoms/Code";
 import { CodeField } from "../atoms/CodeField";
 import type { Exercise } from "../../core/types";
 import { ExerciseAlert } from "../atoms/ExerciseAlert";
-import { utils } from "../../core/utils";
+import { pickOne } from "../../core/utils/pickOne";
 
 interface Props {
   exerciseSet: Array<() => Exercise>;
@@ -29,13 +29,13 @@ export const Playground = ({ exerciseSet }: Props) => {
   };
 
   const handleNextExercise = () => {
-    setExercise(utils.pickOne(exerciseSet)());
+    setExercise(pickOne(exerciseSet)());
     setAnswer("");
     setCorrect(undefined);
   };
 
   useEffect(() => {
-    setExercise(utils.pickOne(exerciseSet)());
+    setExercise(pickOne(exerciseSet)());
   }, [exerciseSet]);
 
   return (

@@ -1,6 +1,6 @@
 import { Header } from "../components/atoms/Header";
 import { Link } from "../components/atoms/Link";
-import { MainTemplate } from "../components/Templates/MainTemplate";
+import { MainTemplate } from "../components/templates/MainTemplate";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
