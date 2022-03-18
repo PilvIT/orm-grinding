@@ -17,9 +17,11 @@ export interface Attribute {
   type: DataType;
 }
 
-export interface Picker {
-  pickEntity: () => string;
-  pickAttribute: () => Attribute;
+export interface Randomizer {
+  attribute: () => Attribute;
+  entity: () => string;
+  id: () => number;
+  number: (from: number, to: number) => number;
 }
 
-export type ExerciseGenerator = (picker: Picker) => Exercise;
+export type ExerciseGenerator = (random: Randomizer) => Exercise;

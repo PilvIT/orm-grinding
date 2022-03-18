@@ -1,14 +1,14 @@
-import type { Exercise, Picker } from "../../core/types";
+import type { Exercise, Randomizer } from "../../core/types";
 import { FormEvent, useEffect, useState } from "react";
 import { Button } from "../atoms/Button";
 import { Code } from "../atoms/Code";
 import { CodeField } from "../atoms/CodeField";
 import { ExerciseAlert } from "../atoms/ExerciseAlert";
-import { entityPicker } from "../../core/exercises/efcore/entityPicker";
 import { pickOne } from "../../core/utils/pickOne";
+import { randomizer } from "../../core/exercises/efcore/randomizer";
 
 interface Props {
-  exerciseSet: Array<(picker: Picker) => Exercise>;
+  exerciseSet: Array<(picker: Randomizer) => Exercise>;
 }
 
 export const Playground = ({ exerciseSet }: Props) => {
@@ -30,13 +30,13 @@ export const Playground = ({ exerciseSet }: Props) => {
   };
 
   const handleNextExercise = () => {
-    setExercise(pickOne(exerciseSet)(entityPicker));
+    setExercise(pickOne(exerciseSet)(randomizer));
     setAnswer("");
     setCorrect(undefined);
   };
 
   useEffect(() => {
-    setExercise(pickOne(exerciseSet)(entityPicker));
+    setExercise(pickOne(exerciseSet)(randomizer));
   }, [exerciseSet]);
 
   return (

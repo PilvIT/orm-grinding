@@ -1,14 +1,13 @@
-import { DataType, Picker } from "../../../types";
+import { DataType } from "../../../types";
+import { randomizer } from "../randomizer";
 import { render } from "@testing-library/react";
 import { select } from "./select";
 
-const picker: Picker = {
-  pickEntity: () => "Car",
-  pickAttribute: () => ({
-    name: "Year",
-    type: DataType.Integer,
-  }),
-};
+randomizer.entity = jest.fn(() => "Car");
+randomizer.attribute = jest.fn(() => ({
+  name: "Year",
+  type: DataType.Integer,
+}));
 
 const codeView = `public class AppDbContext : DbContext {
   public DbSet<Car> Cars { get; set; }
@@ -22,10 +21,10 @@ public class Car {
 
 var db = new AppDbContext();`;
 
-describe("select -queries", () => {
-  const { question, check, code } = select(picker);
+describe("EF Core: Select -queries", () => {
+  const { question, check, code } = select(randomizer);
 
-  it("should formulate question correctly", () => {
+  it("should formulate question", () => {
     const { container } = render(<>{question}</>);
     expect(container.textContent).toEqual(
       `Read property year from Car into anonymous object: { Value }.`
@@ -33,13 +32,11 @@ describe("select -queries", () => {
     expect(code).toEqual(codeView);
   });
 
-  it("should pass the basic answer", () => {
-    expect(check("db.Cars.Select(car => new { Value = car.Year });")).toEqual(
-      true
-    );
-    expect(check("db.Cars.Select(car=>new{Value=car.Year});")).toEqual(true);
-    expect(
-      check(`db.Cars.Select(\ncar => new {\nValue = car.Year });`)
-    ).toEqual(true);
+  it.each([
+    ["db.Cars.Select(car => new { Value = car.Year });"],
+    ["db.Cars.Select(car=>new{Value=car.Year});"],
+    ["db.Cars.Select(\ncar => new {\nValue = car.Year });"],
+  ])("should accept the answers", (answer: string) => {
+    expect(check(answer)).toBeTruthy();
   });
 });

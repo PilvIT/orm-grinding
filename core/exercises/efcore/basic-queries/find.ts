@@ -1,9 +1,8 @@
-import { Exercise } from "../../../types";
-import { chooseEntity } from "../EntityNames";
+import { ExerciseGenerator } from "../../../types";
 
-export const find = (): Exercise => {
-  const entity = chooseEntity();
-  const id = Math.floor(Math.random() * 1000);
+export const find: ExerciseGenerator = (random) => {
+  const entity = random.entity();
+  const id = random.id();
   const code = `public class AppDbContext : DbContext {
   public DbSet<${entity}> ${entity}s { get; set; }
 }

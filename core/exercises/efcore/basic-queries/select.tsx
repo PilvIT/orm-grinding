@@ -1,8 +1,8 @@
 import { Attribute, ExerciseGenerator } from "../../../types";
 
-export const select: ExerciseGenerator = (picker) => {
-  const entity: string = picker.pickEntity();
-  const attribute: Attribute = picker.pickAttribute();
+export const select: ExerciseGenerator = (random) => {
+  const entity: string = random.entity();
+  const attribute: Attribute = random.attribute();
 
   return {
     question: (
