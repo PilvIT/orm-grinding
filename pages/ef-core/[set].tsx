@@ -20,7 +20,6 @@ const EfCorePage = () => {
     }
   }, [router.query.set]);
 
-  console.log(exerciseSet);
   return (
     <MainTemplate>
       <Header size={1} padded>

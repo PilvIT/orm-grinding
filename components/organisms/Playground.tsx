@@ -1,13 +1,14 @@
+import type { Exercise, Picker } from "../../core/types";
 import { FormEvent, useEffect, useState } from "react";
 import { Button } from "../atoms/Button";
 import { Code } from "../atoms/Code";
 import { CodeField } from "../atoms/CodeField";
-import type { Exercise } from "../../core/types";
 import { ExerciseAlert } from "../atoms/ExerciseAlert";
+import { entityPicker } from "../../core/exercises/efcore/entityPicker";
 import { pickOne } from "../../core/utils/pickOne";
 
 interface Props {
-  exerciseSet: Array<() => Exercise>;
+  exerciseSet: Array<(picker: Picker) => Exercise>;
 }
 
 export const Playground = ({ exerciseSet }: Props) => {
@@ -29,13 +30,13 @@ export const Playground = ({ exerciseSet }: Props) => {
   };
 
   const handleNextExercise = () => {
-    setExercise(pickOne(exerciseSet)());
+    setExercise(pickOne(exerciseSet)(entityPicker));
     setAnswer("");
     setCorrect(undefined);
   };
 
   useEffect(() => {
-    setExercise(pickOne(exerciseSet)());
+    setExercise(pickOne(exerciseSet)(entityPicker));
   }, [exerciseSet]);
 
   return (

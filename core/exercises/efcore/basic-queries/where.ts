@@ -1,7 +1,7 @@
 import { Exercise } from "../../../types";
 import { chooseEntity } from "../EntityNames";
 
-export const simpleFilter = (): Exercise => {
+export const where = (): Exercise => {
   const entity = chooseEntity();
   const property = "Year";
 

@@ -1,7 +1,7 @@
 import { Exercise } from "../../../types";
 import { chooseEntity } from "../EntityNames";
 
-export const findById = (): Exercise => {
+export const find = (): Exercise => {
   const entity = chooseEntity();
   const id = Math.floor(Math.random() * 1000);
   const code = `public class AppDbContext : DbContext {
