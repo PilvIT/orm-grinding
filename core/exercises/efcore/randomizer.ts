@@ -7,5 +7,5 @@ export const randomizer: Randomizer = {
   entity: () => pickOne(EntityNames),
   attribute: () => pickOne(Attributes),
   id: () => Math.floor(Math.random() * 1000),
-  number: (from, to) => Math.floor(Math.random() * (to - from) + from),
+  integer: (from, to) => Math.floor(Math.random() * (to - from) + from),
 };

@@ -4,7 +4,7 @@ import { checkAnswer } from "../../checkAnswer";
 export const where: ExerciseGenerator = (random) => {
   const entity = random.entity();
   const property = "Year";
-  const year = random.number(1900, 2100);
+  const year = random.integer(1900, 2100);
 
   return {
     question: (

@@ -21,7 +21,7 @@ export interface Randomizer {
   attribute: () => Attribute;
   entity: () => string;
   id: () => number;
-  number: (from: number, to: number) => number;
+  integer: (from: number, to: number) => number;
 }
 
 export type ExerciseGenerator = (random: Randomizer) => Exercise;

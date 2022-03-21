@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import { where } from "./where";
 
 randomizer.entity = jest.fn(() => "Car");
-randomizer.number = jest.fn(() => 2022);
+randomizer.integer = jest.fn(() => 2022);
 
 const codeView = `public class AppDbContext : DbContext {
   public DbSet<Car> Cars { get; set; }
