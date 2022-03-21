@@ -18,7 +18,8 @@ var db = new AppDbContext();`;
   return {
     code,
     check: (answer: string) => {
-      return checkAnswer(`db.${entity}s.Find\\(${id}\\);`, answer);
+      const pattern = `db.${entity}s.Find\\(${id}\\);`;
+      return checkAnswer(pattern, answer);
     },
     question: (
       <>

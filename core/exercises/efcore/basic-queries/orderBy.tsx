@@ -19,7 +19,6 @@ export const orderBy: ExerciseGenerator = (random) => {
       if (descending) {
         pattern = `db.${entity}s.OrderByDescending\\(.* => .*.${attribute.name}\\);`;
       }
-      console.log(pattern, answer);
       return checkAnswer(pattern, answer);
     },
     code: `public class AppDbContext : DbContext {

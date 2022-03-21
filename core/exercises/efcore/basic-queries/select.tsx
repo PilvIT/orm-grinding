@@ -1,4 +1,5 @@
 import { Attribute, ExerciseGenerator } from "../../../types";
+import { checkAnswer } from "../../checkAnswer";
 
 export const select: ExerciseGenerator = (random) => {
   const entity: string = random.entity();
@@ -12,15 +13,8 @@ export const select: ExerciseGenerator = (random) => {
       </>
     ),
     check: (answer: string) => {
-      const cleanAnswer = answer.replaceAll(/\s/g, "");
-      const regex = new RegExp(
-        `db.${entity}s.Select\\(.* => new { Value = .*.${attribute.name} }\\);`.replaceAll(
-          /\s/g,
-          ""
-        )
-      );
-
-      return cleanAnswer.match(regex) !== null;
+      const pattern = `db.${entity}s.Select\\(.* => new { Value = .*.${attribute.name} }\\);`;
+      return checkAnswer(pattern, answer);
     },
     code: `public class AppDbContext : DbContext {
   public DbSet<${entity}> ${entity}s { get; set; }
