@@ -1,4 +1,5 @@
 import { ExerciseGenerator } from "../../../types";
+import { checkAnswer } from "../../checkAnswer";
 
 export const find: ExerciseGenerator = (random) => {
   const entity = random.entity();
@@ -17,8 +18,12 @@ var db = new AppDbContext();`;
   return {
     code,
     check: (answer: string) => {
-      return answer === `db.${entity}s.Find(${id});`;
+      return checkAnswer(`db.${entity}s.Find\\(${id}\\);`, answer);
     },
-    question: `How would you retrieve entity ${entity} by id ${id}?`,
+    question: (
+      <>
+        Retrieve <code>{entity}</code> by id <code>{id}</code>.
+      </>
+    ),
   };
 };
