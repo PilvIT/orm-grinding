@@ -44,7 +44,11 @@ export const Playground = ({ exerciseSet }: Props) => {
       <div className="p-5">
         <form className="space-y-5" onSubmit={handleSubmit}>
           <p>{exercise.question}</p>
-          <CodeField value={answer} setValue={setAnswer} />
+          <CodeField
+            value={answer}
+            setValue={setAnswer}
+            placeholder={exercise.placeholder}
+          />
 
           <div className="flex flex-row-reverse justify-between items-center">
             {correct ? (

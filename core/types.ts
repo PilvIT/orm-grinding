@@ -4,6 +4,7 @@ export interface Exercise {
   check: (answer: string) => boolean;
   code: string;
   question: ReactNode;
+  placeholder?: string;
 }
 
 export enum DataType {

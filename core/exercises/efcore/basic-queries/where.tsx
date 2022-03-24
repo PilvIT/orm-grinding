@@ -1,3 +1,4 @@
+import { CodeInline } from "../../../../components/atoms/CodeInline";
 import { ExerciseGenerator } from "../../../types";
 import { checkAnswer } from "../../checkAnswer";
 
@@ -9,8 +10,8 @@ export const where: ExerciseGenerator = (random) => {
   return {
     question: (
       <>
-        Filter <code>{entity}s</code> by <code>{property.toLowerCase()}</code>{" "}
-        {year}.
+        Filter <CodeInline>{entity}s</CodeInline> by{" "}
+        <CodeInline>{property.toLowerCase()}</CodeInline> {year}.
       </>
     ),
     check: (answer: string) => {

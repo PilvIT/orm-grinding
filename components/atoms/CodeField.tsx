@@ -3,9 +3,10 @@ import { ChangeEvent } from "react";
 interface Props {
   value: string;
   setValue: (value: string) => void;
+  placeholder?: string;
 }
 
-export const CodeField = ({ value, setValue }: Props) => {
+export const CodeField = ({ value, setValue, placeholder }: Props) => {
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
   };
@@ -17,6 +18,7 @@ export const CodeField = ({ value, setValue }: Props) => {
       spellCheck={false}
       onChange={handleChange}
       rows={5}
+      placeholder={placeholder}
     />
   );
 };

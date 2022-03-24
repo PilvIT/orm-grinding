@@ -1,4 +1,5 @@
 import { Attribute, ExerciseGenerator } from "../../../types";
+import { CodeInline } from "../../../../components/atoms/CodeInline";
 import { checkAnswer } from "../../checkAnswer";
 
 export const orderBy: ExerciseGenerator = (random) => {
@@ -9,8 +10,8 @@ export const orderBy: ExerciseGenerator = (random) => {
   return {
     question: (
       <>
-        Query all <code>{entity}</code>s and sort by property{" "}
-        <code>{attribute.name.toLowerCase()}</code> in{" "}
+        Query all <CodeInline>{entity}</CodeInline>s and sort by property{" "}
+        <CodeInline>{attribute.name.toLowerCase()}</CodeInline> in{" "}
         {descending ? "descending" : "ascending"} order.
       </>
     ),

@@ -1,3 +1,4 @@
+import { CodeInline } from "../../../../components/atoms/CodeInline";
 import { ExerciseGenerator } from "../../../types";
 import { checkAnswer } from "../../checkAnswer";
 
@@ -23,7 +24,8 @@ var db = new AppDbContext();`;
     },
     question: (
       <>
-        Retrieve <code>{entity}</code> by id <code>{id}</code>.
+        Retrieve <CodeInline>{entity}</CodeInline> by id{" "}
+        <CodeInline>{id}</CodeInline>.
       </>
     ),
   };
