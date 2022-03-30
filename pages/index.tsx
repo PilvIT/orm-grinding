@@ -19,7 +19,7 @@ const Home: NextPage = () => {
       </p>
 
       <div className="mx-auto my-10 flex flex-col gap-5 items-center">
-        <Link href="/ef-core" appearance="button">
+        <Link href="/ef-core/models" appearance="button">
           Entity Framework Core
         </Link>
       </div>
